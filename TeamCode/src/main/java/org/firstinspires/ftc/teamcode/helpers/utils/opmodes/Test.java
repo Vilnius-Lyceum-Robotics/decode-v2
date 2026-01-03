@@ -6,11 +6,11 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.Chassis.Chassis;
-import org.firstinspires.ftc.teamcode.subsystems.Intake.Intake;
-import org.firstinspires.ftc.teamcode.subsystems.Intake.commands.IntakeCommand;
-import org.firstinspires.ftc.teamcode.subsystems.Shooter.Shooter;
-import org.firstinspires.ftc.teamcode.subsystems.Shooter.commands.ShootCommand;
+import org.firstinspires.ftc.teamcode.subsystems.chassis.Chassis;
+import org.firstinspires.ftc.teamcode.subsystems.intake.Intake;
+import org.firstinspires.ftc.teamcode.subsystems.intake.commands.IntakeCommand;
+import org.firstinspires.ftc.teamcode.subsystems.shooter.Shooter;
+import org.firstinspires.ftc.teamcode.subsystems.shooter.commands.ShootCommand;
 
 @TeleOp(name = "Shooter test", group = "Tests")
 public class Test extends CommandOpMode {

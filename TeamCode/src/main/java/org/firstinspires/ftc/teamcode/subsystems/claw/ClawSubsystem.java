@@ -5,11 +5,13 @@ import static com.arcrobotics.ftclib.util.MathUtils.clamp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
 
 
 public class ClawSubsystem extends VLRSubsystem<ClawSubsystem> implements ClawConfiguration {
     private Servo angleServo, twistServo, grabServos;
+    private Telemetry telemetry;
 
     private VerticalRotation targetAngle = VerticalRotation.UP;
     private GripperState clawState = GripperState.CLOSED;

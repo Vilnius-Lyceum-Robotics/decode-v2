@@ -1,13 +1,13 @@
-package org.firstinspires.ftc.teamcode.subsystems.Shooter.commands;
+package org.firstinspires.ftc.teamcode.subsystems.shooter.commands;
 
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
-import org.firstinspires.ftc.teamcode.subsystems.Intake.Intake;
-import org.firstinspires.ftc.teamcode.subsystems.Shooter.Shooter;
-import org.firstinspires.ftc.teamcode.subsystems.Shooter.ShooterConfiguration;
+import org.firstinspires.ftc.teamcode.subsystems.intake.Intake;
+import org.firstinspires.ftc.teamcode.subsystems.shooter.Shooter;
+import org.firstinspires.ftc.teamcode.subsystems.shooter.ShooterConfiguration;
 
 public class ShootCommand extends SequentialCommandGroup {
 

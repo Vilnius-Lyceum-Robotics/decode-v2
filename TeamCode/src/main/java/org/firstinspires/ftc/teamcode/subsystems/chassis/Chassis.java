@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.subsystems.chassisOld;
+package org.firstinspires.ftc.teamcode.subsystems.chassis;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.geometry.Vector2d;
@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.auto.pedroPathing.localization.GoBildaPinpointDriver;
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.chassisOld.helpers.AsymmetricLowPassFilter;
-import org.firstinspires.ftc.teamcode.subsystems.chassisOld.helpers.MecanumDriveController;
+import org.firstinspires.ftc.teamcode.subsystems.chassis.helpers.AsymmetricLowPassFilter;
+import org.firstinspires.ftc.teamcode.subsystems.chassis.helpers.MecanumDriveController;
 
 @Config
 public class Chassis extends VLRSubsystem<Chassis> implements ChassisConfiguration {
@@ -43,8 +43,8 @@ public class Chassis extends VLRSubsystem<Chassis> implements ChassisConfigurati
 
         MotorLeftFront = new MotorEx(hardwareMap, MOTOR_LEFT_FRONT);
         MotorRightFront = new MotorEx(hardwareMap, MOTOR_RIGHT_FRONT);
-        MotorLeftBack = new MotorEx(hardwareMap, MOTOR_LEFT_BACK);
-        MotorRightBack = new MotorEx(hardwareMap, MOTOR_RIGHT_BACK);
+        MotorLeftBack = new MotorEx(hardwareMap, MOTOR_LEFT_REAR);
+        MotorRightBack = new MotorEx(hardwareMap, MOTOR_RIGHT_REAR);
 
         MotorLeftFront.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         MotorRightFront.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
@@ -96,14 +96,6 @@ public class Chassis extends VLRSubsystem<Chassis> implements ChassisConfigurati
         MotorRightFront.set(clampPower(driveController.frontRightMetersPerSecond) * motorPower);
         MotorLeftBack.set(clampPower(driveController.rearLeftMetersPerSecond) * motorPower);
         MotorRightBack.set(clampPower(driveController.rearRightMetersPerSecond) * motorPower);
-
-//        if(GlobalConfig.DEBUG_MODE){
-//            Telemetry telemetry = new MultipleTelemetry(FtcDashboard.getInstance().getTelemetry());
-//            telemetry.addData("Motor FL", MotorLeftFront.motorEx.getCurrent(CurrentUnit.AMPS));
-//            telemetry.addData("Motor FR", MotorRightFront.motorEx.getCurrent(CurrentUnit.AMPS));
-//            telemetry.addData("Motor BL", MotorLeftBack.motorEx.getCurrent(CurrentUnit.AMPS));
-//            telemetry.addData("Motor BR", MotorRightBack.motorEx.getCurrent(CurrentUnit.AMPS));
-//        }
     }
 
     public double clampPower(double motorPower){
