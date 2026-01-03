@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
 
 public class Shooter extends VLRSubsystem<Shooter> implements ShooterConfiguration {
-    private MotorEx shooter;
+    private MotorEx shooterLeft, shooterRight;
     private final Telemetry telemetry = FtcDashboard.getInstance().getTelemetry();
     private Servo hood;
     boolean isShooterOn = false;
@@ -22,6 +22,7 @@ public class Shooter extends VLRSubsystem<Shooter> implements ShooterConfigurati
     private double hoodPos;
     private final double HOOD_STEP = 0.005;
 
+
     protected void initialize(HardwareMap hardwareMap) {
 
         lift = hardwareMap.get(Servo.class, LIFT_SERVO);
@@ -29,16 +30,18 @@ public class Shooter extends VLRSubsystem<Shooter> implements ShooterConfigurati
         this.shooter_rpm = 0;
 
         hood = hardwareMap.get(Servo.class, SHOOTER_HOOD);
-        shooter = new MotorEx(hardwareMap, SHOOTER_MOTOR, Motor.GoBILDA.BARE);
+        shooterLeft = new MotorEx(hardwareMap, SHOOTER_LEFT, Motor.GoBILDA.BARE);
+        shooterRight = new MotorEx(hardwareMap, SHOOTER_RIGHT, Motor.GoBILDA.BARE);
 
-        shooter.setRunMode(Motor.RunMode.VelocityControl);
-        shooter.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        shooterLeft.setRunMode(Motor.RunMode.VelocityControl);
+        shooterLeft.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        shooterRight.setRunMode(Motor.RunMode.VelocityControl);
+        shooterRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
         hood.setPosition(0.1);
         hoodPos = 0.1;
 
-        setLift(LIFT_DOWN_POS);
-
+        //setLift(LIFT_DOWN_POS);
     }
 
     private static class Preset{
@@ -49,14 +52,15 @@ public class Shooter extends VLRSubsystem<Shooter> implements ShooterConfigurati
         }
     }
     private final Preset[] presets = new Preset[]{
-            new Preset(1850, 0.10),
-            new Preset(2150, 0.16),
-            new Preset(2650, 0.18),
+            new Preset(1000, 0.10),
+            new Preset(800, 0.16),
+            new Preset(1200, 0.18),
             new Preset(800, 0),
     };
     public void shooterPreset(int index)
     {
-        shooter.setVelocity(presets[index].rpm*multiplierRPM);
+        shooterLeft.setVelocity(presets[index].rpm*multiplierRPM);
+        shooterRight.setVelocity(-presets[index].rpm*multiplierRPM);
         hoodPos = presets[index].hoodPos;
         hood.setPosition(hoodPos);
     }
@@ -70,15 +74,26 @@ public class Shooter extends VLRSubsystem<Shooter> implements ShooterConfigurati
         hoodPos = Range.clip(hoodPos - HOOD_STEP, 0, 1);
         hood.setPosition(hoodPos);
     }
-    public void shooterUp()
+//    public void shooterUp()
+//    {
+//        shooter_rpm = Range.clip(shooter_rpm + 50, 0, 2800);
+//        shooterLeft.setVelocity(shooter_rpm*multiplierRPM);
+//        shooterRight.setVelocity(shooter_rpm*multiplierRPM);
+//    }
+//    public void shooterDown()
+//    {
+//        shooter_rpm = Range.clip(shooter_rpm - 50, 0, 2800);
+//        shooterLeft.setVelocity(shooter_rpm*multiplierRPM);
+//        shooterRight.setVelocity(shooter_rpm*multiplierRPM);
+//    }
+
+    public void liftUp()
     {
-        shooter_rpm = Range.clip(shooter_rpm + 50, 0, 2800);
-        shooter.setVelocity(shooter_rpm*multiplierRPM);
+        lift.setPosition(0.6);
     }
-    public void shooterDown()
+    public void liftDown()
     {
-        shooter_rpm = Range.clip(shooter_rpm - 50, 0, 2800);
-        shooter.setVelocity(shooter_rpm*multiplierRPM);
+        lift.setPosition(0.2);
     }
 
 
@@ -87,16 +102,25 @@ public class Shooter extends VLRSubsystem<Shooter> implements ShooterConfigurati
     //    }
     public void stopShooter(){
         isShooterOn = false;
-        shooter.stopMotor();
+        shooterLeft.stopMotor();
+        shooterRight.stopMotor();
     }
-    public void telemetry()
+    //for testing
+    public void upShooterLeft() {
+        shooterLeft.setVelocity(1000);
+    }
+    public void upShooterRight() {
+        shooterRight.setVelocity(-1000);
+    }
+
+    public void telemetry(Telemetry t)
     {
-        telemetry.addData("Shooter motor velocity: ", shooter.getVelocity());
-        telemetry.addData("Hood spin: ", hoodPos);
-        telemetry.addData("Lift angle: ", getMappedLift());
-        telemetry.addData("Lift angle raw: ", liftAngle);
-        telemetry.addData("Shooter rpm: ", shooter_rpm);
-        telemetry.update();
+        t.addData("Shooter L motor velocity: ", shooterLeft.getVelocity());
+        t.addData("Shooter R motor velocity: ", shooterRight.getVelocity());
+        t.addData("Hood spin: ", hoodPos);
+        t.addData("Lift angle: ", getMappedLift());
+        t.addData("Lift angle raw: ", liftAngle);
+        t.addData("Shooter rpm: ", shooter_rpm);
     }
     public boolean isShooterOn() {
         return isShooterOn;

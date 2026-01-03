@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.helpers.subsystems;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,6 +58,7 @@ public abstract class VLRSubsystem<T extends VLRSubsystem<T>> extends SubsystemB
      * @param hardwareMap The HardwareMap to use for initialization
      */
     protected abstract void initialize(HardwareMap hardwareMap);
+
 
     /**
      * Initializes all of the required subsystems with the given hardware map.

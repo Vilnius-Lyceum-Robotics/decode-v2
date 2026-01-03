@@ -55,7 +55,7 @@ public class Intake extends VLRSubsystem<Intake> implements IntakeConfiguration 
         transferBooleanHolder.setBool(ind, on);
         isTransferOn = transferBooleanHolder.getValue();
         if(isTransferOn){
-            transfer.set(transferSpeed);
+            transfer.set(-+transferSpeed);
         }else{
             transfer.stopMotor();
         }
