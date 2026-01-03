@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode.auto.commands.factory;
 
-import static org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideConfiguration.MAX_POSITION;
-import static org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideConfiguration.TICKS_PER_IN;
-
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.ConditionalCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
@@ -21,31 +18,11 @@ import org.firstinspires.ftc.teamcode.helpers.commands.CustomConditionalCommand;
 import org.firstinspires.ftc.teamcode.helpers.commands.InstantCommand;
 import org.firstinspires.ftc.teamcode.helpers.enums.Alliance;
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.arm.ArmState;
-import org.firstinspires.ftc.teamcode.subsystems.arm.commands.RetractArm;
-import org.firstinspires.ftc.teamcode.subsystems.arm.commands.RetractArmAuto;
-import org.firstinspires.ftc.teamcode.subsystems.arm.commands.SetCurrentArmState;
-import org.firstinspires.ftc.teamcode.subsystems.arm.commands.SetSlideExtension;
-import org.firstinspires.ftc.teamcode.subsystems.arm.commands.sample.IntakeSample;
-import org.firstinspires.ftc.teamcode.subsystems.arm.commands.sample.ScoreSample;
-import org.firstinspires.ftc.teamcode.subsystems.arm.rotator.ArmRotatorSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideConfiguration;
-import org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.claw.ClawConfiguration;
 import org.firstinspires.ftc.teamcode.subsystems.claw.ClawSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.claw.commands.SetClawAngle;
 import org.firstinspires.ftc.teamcode.subsystems.claw.commands.SetClawState;
 import org.firstinspires.ftc.teamcode.subsystems.claw.commands.SetClawTwist;
-import org.firstinspires.ftc.teamcode.subsystems.neopixel.NeoPixelConfiguration;
-import org.firstinspires.ftc.teamcode.subsystems.neopixel.NeoPixelSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.neopixel.commands.SetBrightness;
-import org.firstinspires.ftc.teamcode.subsystems.neopixel.commands.SetColour;
-import org.firstinspires.ftc.teamcode.subsystems.neopixel.commands.SetEffect;
-import org.firstinspires.ftc.teamcode.subsystems.neopixel.commands.SetSolidLed;
-import org.firstinspires.ftc.teamcode.subsystems.vision.BestSampleDeterminer;
-import org.firstinspires.ftc.teamcode.subsystems.vision.OrientationDeterminerPostProcessor;
-import org.firstinspires.ftc.teamcode.subsystems.vision.Vision;
-import org.firstinspires.ftc.teamcode.subsystems.vision.commands.ProcessFrame;
 
 import java.util.List;
 
@@ -84,7 +61,7 @@ public class NetCommandFactory extends CommandFactory {
 
     private SequentialCommandGroup samplePickup = new SequentialCommandGroup();
 
-    final OrientationDeterminerPostProcessor.SampleOrientation[] bestSampleOrientation = {null};
+//    final OrientationDeterminerPostProcessor.SampleOrientation[] bestSampleOrientation = {null};
 
     public NetCommandFactory(Alliance alliance, ElapsedTime time) {
         this.alliance = alliance;
@@ -105,7 +82,7 @@ public class NetCommandFactory extends CommandFactory {
 
     @Override
     public Class<? extends VLRSubsystem<?>>[] getRequiredSubsystems() {
-        return new Class[]{ArmSlideSubsystem.class, ArmRotatorSubsystem.class, ClawSubsystem.class, Vision.class};
+        return new Class[]{/*ArmSlideSubsystem.class, ArmRotatorSubsystem.class,*/ ClawSubsystem.class/*, Vision.class*/};
     }
 
 
@@ -127,7 +104,7 @@ public class NetCommandFactory extends CommandFactory {
                         new SequentialCommandGroup(
                                 new WaitCommand(450),
                                 //new SetLiftUpLed(NeoPixelConfiguration.Colour.YELLOW),
-                                new ScoreSample(117),
+//                                new ScoreSample(117),
                                 new WaitCommand(100)
                         )
                 ),
@@ -135,7 +112,7 @@ public class NetCommandFactory extends CommandFactory {
                         new SequentialCommandGroup(
                                 //new SetLiftDownLed(NeoPixelConfiguration.Colour.YELLOW),
                                 //new SetColour(NeoPixelConfiguration.Colour.CYAN),
-                                new RetractArmAuto()
+//                                new RetractArmAuto()
                                 //new SetTargetLed(NeoPixelConfiguration.Colour.YELLOW)
                         ),
                         new FollowPath(toScoreHeading, 0, new Point(toScoreX, toSample1Y)).withTimeout(0)
@@ -155,7 +132,7 @@ public class NetCommandFactory extends CommandFactory {
                         new SequentialCommandGroup(
                                 new WaitCommand(650),
                                 //new SetLiftUpLed(NeoPixelConfiguration.Colour.YELLOW),
-                                new ScoreSample(117),
+//                                new ScoreSample(117),
                                 new WaitCommand(100)
                         )
                 ),
@@ -167,7 +144,7 @@ public class NetCommandFactory extends CommandFactory {
                         new SequentialCommandGroup(
                                 //new SetLiftDownLed(NeoPixelConfiguration.Colour.YELLOW),
                                 //new SetColour(NeoPixelConfiguration.Colour.CYAN),
-                                new RetractArmAuto()
+//                                new RetractArmAuto()
                                 //new SetTargetLed(NeoPixelConfiguration.Colour.YELLOW)
                         )
                 ),
@@ -187,7 +164,7 @@ public class NetCommandFactory extends CommandFactory {
                         new SequentialCommandGroup(
                                 new WaitCommand(500),
                                 //new SetLiftUpLed(NeoPixelConfiguration.Colour.YELLOW),
-                                new ScoreSample(117),
+//                                new ScoreSample(117),
                                 new WaitCommand(100)
                         )
                 ),
@@ -199,7 +176,7 @@ public class NetCommandFactory extends CommandFactory {
                         new SequentialCommandGroup(
                                 //new SetLiftDownLed(NeoPixelConfiguration.Colour.YELLOW),
                                 //new SetColour(NeoPixelConfiguration.Colour.CYAN),
-                                new RetractArmAuto()
+//                                new RetractArmAuto()
                                 //new SetTargetLed(NeoPixelConfiguration.Colour.YELLOW)
                         )
                 ),
@@ -216,7 +193,7 @@ public class NetCommandFactory extends CommandFactory {
                         new FollowPath(toSample3Heading, new Point(toSample3X, toSample3Y)),
                         new SequentialCommandGroup(
                                 new WaitCommand(300),
-                                new IntakeSample(0.2),
+//                                new IntakeSample(0.2),
                                 new SetClawState(ClawConfiguration.GripperState.OPEN),
                                 new WaitCommand(100),
                                 new SetClawAngle(ClawConfiguration.VerticalRotation.DOWN),
@@ -228,8 +205,8 @@ public class NetCommandFactory extends CommandFactory {
                                 //new SetColour(NeoPixelConfiguration.Colour.CYAN),
 
                                 new WaitCommand(200),
-                                new SetClawAngle(ClawConfiguration.VerticalRotation.UP),
-                                new SetCurrentArmState(ArmState.State.IN_ROBOT)
+                                new SetClawAngle(ClawConfiguration.VerticalRotation.UP)
+//                                new SetCurrentArmState(ArmState.State.IN_ROBOT)
                         )
                 ),
 //                  new FollowPath(90, toScoreHeading, new Point(30, 120)),
@@ -240,7 +217,7 @@ public class NetCommandFactory extends CommandFactory {
                         new SequentialCommandGroup(
                                 new WaitCommand(650),
                                 //new SetLiftUpLed(NeoPixelConfiguration.Colour.YELLOW),
-                                new ScoreSample(117),
+//                                new ScoreSample(117),
                                 new WaitCommand(100)
                         )
                 ),
@@ -251,10 +228,10 @@ public class NetCommandFactory extends CommandFactory {
                         ).withTimeout(2000),
                         new SequentialCommandGroup(
                                 //new SetLiftDownLed(NeoPixelConfiguration.Colour.YELLOW),
-                                new SetCurrentArmState(ArmState.State.SAMPLE_SCORE),
+//                                new SetCurrentArmState(ArmState.State.SAMPLE_SCORE),
 
                                 //new SetColour(NeoPixelConfiguration.Colour.CYAN),
-                                new RetractArm()
+//                                new RetractArm()
                         ),
                         new WaitCommand(3500)
                 ),
@@ -262,7 +239,7 @@ public class NetCommandFactory extends CommandFactory {
                         //new PrintCommand("eikit nahui"),
                         //new SetBrightness(0),
 
-                        new ProcessFrame(),
+//                        new ProcessFrame(),
                         new SequentialCommandGroup(
                                 new WaitCommand(100),
                                 new InstantCommand() {
@@ -280,11 +257,11 @@ public class NetCommandFactory extends CommandFactory {
                     @Override
                     public void run() {
                         //System.out.println("vatafak epel meps");
-                        List<OrientationDeterminerPostProcessor.SampleOrientation> samples = VLRSubsystem.getInstance(Vision.class).getSampleOrientations();
+//                        List<OrientationDeterminerPostProcessor.SampleOrientation> samples = VLRSubsystem.getInstance(Vision.class).getSampleOrientations();
                         //System.out.println("vatafak gogol meps");
-                        bestSampleOrientation[0] = BestSampleDeterminer.determineBestSample(samples, alliance);
+//                        bestSampleOrientation[0] = BestSampleDeterminer.determineBestSample(samples, alliance);
                         // log for debug
-                        System.out.println("Going for sample: " + bestSampleOrientation[0].color + " in X: " + bestSampleOrientation[0].relativeX + " Y: " + bestSampleOrientation[0].relativeY);
+//                        System.out.println("Going for sample: " + bestSampleOrientation[0].color + " in X: " + bestSampleOrientation[0].relativeX + " Y: " + bestSampleOrientation[0].relativeY);
 
                         //NeoPixelSubsystem np = VLRSubsystem.getInstance(NeoPixelSubsystem.class);
                         //np.setColor(bestSampleOrientation[0].color.equals("yellow") ? NeoPixelConfiguration.Colour.YELLOW : bestSampleOrientation[0].color.equals("blue") ? NeoPixelConfiguration.Colour.BLUE : NeoPixelConfiguration.Colour.RED);
@@ -296,78 +273,78 @@ public class NetCommandFactory extends CommandFactory {
                 new InstantCommand() {
                     @Override
                     public void run() {
-                        generateSubmersibleSampleCommand();
-                        System.out.println(bestSampleOrientation[0] == null);
+//                        generateSubmersibleSampleCommand();
+//                        System.out.println(bestSampleOrientation[0] == null);
                     }
-                },
-                new ConditionalCommand(
-                        getSubmersibleSample(),
-                        dontDoShit(),
-                        () -> bestSampleOrientation[0] != null && 30 - time.seconds() > 3 // don't go if theres no time, better to park
-                )
+                }
+//                new ConditionalCommand(
+//                        getSubmersibleSample(),
+//                        dontDoShit(),
+//                        () -> bestSampleOrientation[0] != null && 30 - time.seconds() > 3 // don't go if theres no time, better to park
+//                )
         );
     }
 
-    private void generateSubmersibleSampleCommand() {
-        System.out.println("generating sub grab cmd");
-        samplePickup.addCommands(
-                // sample relative X is positive to the right; Y is positive to the front
-                new SetSlideExtension((TICKS_PER_IN * (bestSampleOrientation[0].relativeY + 2)) / MAX_POSITION),
-                new ParallelCommandGroup(
-                        new MoveRelative(-bestSampleOrientation[0].relativeX + 0.6, 0),
-                        new WaitUntilCommand(VLRSubsystem.getInstance(ArmSlideSubsystem.class)::reachedTargetPosition)
-                ).withTimeout(600),
-                new SetClawAngle(ClawConfiguration.VerticalRotation.DOWN),
-                new WaitCommand(150),
-                new SetClawTwist(bestSampleOrientation[0].isVerticallyOriented ? ClawConfiguration.HorizontalRotation.NORMAL : ClawConfiguration.HorizontalRotation.FLIPPED),
-                new WaitCommand(250),
-                new SetClawState(ClawConfiguration.GripperState.CLOSED),
-                new WaitCommand(150),
-                new SetClawTwist(ClawConfiguration.HorizontalRotation.NORMAL),
-                new SetClawAngle(ClawConfiguration.VerticalRotation.UP),
-                new SetSlideExtension(ArmSlideConfiguration.TargetPosition.RETRACTED),
-                new CustomConditionalCommand(
-                        new ParallelRaceGroup(
-                                new FollowPath(-90, toScoreHeading, new Point(72, 140), new Point(toScoreX - 2, toScoreY - 2)),
-                                new SequentialCommandGroup(
-                                        new SetCurrentArmState(ArmState.State.IN_ROBOT),
-                                        new WaitCommand(1600),
-                                        new InstantCommand() {
-                                            @Override
-                                            public void run() {
-                                                //NeoPixelSubsystem np = VLRSubsystem.getInstance(NeoPixelSubsystem.class);
-                                                //np.setColor(bestSampleOrientation[0].color.equals("yellow") ? NeoPixelConfiguration.Colour.YELLOW : bestSampleOrientation[0].color.equals("blue") ? NeoPixelConfiguration.Colour.BLUE : NeoPixelConfiguration.Colour.RED);
-                                                //np.setEffect(NeoPixelConfiguration.Effect.CHASE_FORWARD);
-                                                //np.setEffectTime(1);
-                                                //np.setBrightness(1);
-                                            }
-                                        },
-                                        new ScoreSample(117),
-
-                                        new WaitCommand(100),
-                                        new SetClawState(ClawConfiguration.GripperState.OPEN),
-                                        //new PrintCommand("fein fein fein"),
-                                        new InstantCommand() {
-                                            @Override
-                                            public void run() {
-                                                //NeoPixelSubsystem np = VLRSubsystem.getInstance(NeoPixelSubsystem.class);
-                                                //np.setColor(bestSampleOrientation[0].color.equals("yellow") ? NeoPixelConfiguration.Colour.YELLOW : bestSampleOrientation[0].color.equals("blue") ? NeoPixelConfiguration.Colour.BLUE : NeoPixelConfiguration.Colour.RED);
-                                                //np.setEffect(NeoPixelConfiguration.Effect.CHASE_BACKWARD);
-                                                //np.setEffectTime(1);
-                                                //np.setBrightness(1);
-                                            }
-                                        },
-
-                                        //new SetColour(NeoPixelConfiguration.Colour.CYAN),
-                                        new RetractArm()
-                                        //new SetSolidLed(alliance == Alliance.BLUE ? NeoPixelConfiguration.Colour.BLUE : NeoPixelConfiguration.Colour.RED)
-                                       // new PrintCommand("fein2")
-                                )
-                        ),
-                        () -> 30 - time.seconds() > 3
-                )
-        );
-    }
+//    private void generateSubmersibleSampleCommand() {
+//        System.out.println("generating sub grab cmd");
+//        samplePickup.addCommands(
+//                // sample relative X is positive to the right; Y is positive to the front
+////                new SetSlideExtension((TICKS_PER_IN * (bestSampleOrientation[0].relativeY + 2)) / MAX_POSITION),
+//                new ParallelCommandGroup(
+//                        new MoveRelative(-bestSampleOrientation[0].relativeX + 0.6, 0),
+//                        new WaitUntilCommand(VLRSubsystem.getInstance(ArmSlideSubsystem.class)::reachedTargetPosition)
+//                ).withTimeout(600),
+//                new SetClawAngle(ClawConfiguration.VerticalRotation.DOWN),
+//                new WaitCommand(150),
+//                new SetClawTwist(bestSampleOrientation[0].isVerticallyOriented ? ClawConfiguration.HorizontalRotation.NORMAL : ClawConfiguration.HorizontalRotation.FLIPPED),
+//                new WaitCommand(250),
+//                new SetClawState(ClawConfiguration.GripperState.CLOSED),
+//                new WaitCommand(150),
+//                new SetClawTwist(ClawConfiguration.HorizontalRotation.NORMAL),
+//                new SetClawAngle(ClawConfiguration.VerticalRotation.UP),
+//                new SetSlideExtension(ArmSlideConfiguration.TargetPosition.RETRACTED),
+//                new CustomConditionalCommand(
+//                        new ParallelRaceGroup(
+//                                new FollowPath(-90, toScoreHeading, new Point(72, 140), new Point(toScoreX - 2, toScoreY - 2)),
+//                                new SequentialCommandGroup(
+//                                        new SetCurrentArmState(ArmState.State.IN_ROBOT),
+//                                        new WaitCommand(1600),
+//                                        new InstantCommand() {
+//                                            @Override
+//                                            public void run() {
+//                                                //NeoPixelSubsystem np = VLRSubsystem.getInstance(NeoPixelSubsystem.class);
+//                                                //np.setColor(bestSampleOrientation[0].color.equals("yellow") ? NeoPixelConfiguration.Colour.YELLOW : bestSampleOrientation[0].color.equals("blue") ? NeoPixelConfiguration.Colour.BLUE : NeoPixelConfiguration.Colour.RED);
+//                                                //np.setEffect(NeoPixelConfiguration.Effect.CHASE_FORWARD);
+//                                                //np.setEffectTime(1);
+//                                                //np.setBrightness(1);
+//                                            }
+//                                        },
+//                                        new ScoreSample(117),
+//
+//                                        new WaitCommand(100),
+//                                        new SetClawState(ClawConfiguration.GripperState.OPEN),
+//                                        //new PrintCommand("fein fein fein"),
+//                                        new InstantCommand() {
+//                                            @Override
+//                                            public void run() {
+//                                                //NeoPixelSubsystem np = VLRSubsystem.getInstance(NeoPixelSubsystem.class);
+//                                                //np.setColor(bestSampleOrientation[0].color.equals("yellow") ? NeoPixelConfiguration.Colour.YELLOW : bestSampleOrientation[0].color.equals("blue") ? NeoPixelConfiguration.Colour.BLUE : NeoPixelConfiguration.Colour.RED);
+//                                                //np.setEffect(NeoPixelConfiguration.Effect.CHASE_BACKWARD);
+//                                                //np.setEffectTime(1);
+//                                                //np.setBrightness(1);
+//                                            }
+//                                        },
+//
+//                                        //new SetColour(NeoPixelConfiguration.Colour.CYAN),
+//                                        new RetractArm()
+//                                        //new SetSolidLed(alliance == Alliance.BLUE ? NeoPixelConfiguration.Colour.BLUE : NeoPixelConfiguration.Colour.RED)
+//                                       // new PrintCommand("fein2")
+//                                )
+//                        ),
+//                        () -> 30 - time.seconds() > 3
+//                )
+//        );
+//    }
 
     private SequentialCommandGroup getSubmersibleSample() {
         //System.out.println("getting cmd");

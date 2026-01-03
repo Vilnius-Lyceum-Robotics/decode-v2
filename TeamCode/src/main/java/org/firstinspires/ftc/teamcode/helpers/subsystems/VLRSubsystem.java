@@ -3,10 +3,6 @@ package org.firstinspires.ftc.teamcode.helpers.subsystems;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.subsystems.arm.rotator.ArmRotatorSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.hang.HangSubsystem;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,18 +42,13 @@ public abstract class VLRSubsystem<T extends VLRSubsystem<T>> extends SubsystemB
         }
     }
 
-    public static ArmRotatorSubsystem getRotator() {
-        return VLRSubsystem.getInstance(ArmRotatorSubsystem.class);
-    }
+//    public static ArmRotatorSubsystem getRotator() {
+//        return VLRSubsystem.getInstance(ArmRotatorSubsystem.class);
+//    }
 
-    public static ArmSlideSubsystem getSlides() {
-        return VLRSubsystem.getInstance(ArmSlideSubsystem.class);
-    }
-
-    public static HangSubsystem getHang() {
-        return VLRSubsystem.getInstance(HangSubsystem.class);
-    }
-
+//    public static ArmSlideSubsystem getSlides() {
+//        return VLRSubsystem.getInstance(ArmSlideSubsystem.class);
+//    }
     /**
      * Initializes the subsystem with the given hardware map.
      * This method should be implemented by subclasses to set up hardware components.

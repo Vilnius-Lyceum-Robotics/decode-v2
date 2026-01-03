@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode.helpers.utils.opmodes;
 
-import static org.firstinspires.ftc.teamcode.subsystems.arm.rotator.ArmRotatorConfiguration.MOTOR_NAME;
-import static org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideConfiguration.MOTOR_NAME_0;
-import static org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideConfiguration.MOTOR_NAME_1;
-import static org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideConfiguration.MOTOR_NAME_2;
+//import static org.firstinspires.ftc.teamcode.subsystems.arm.rotator.ArmRotatorConfiguration.MOTOR_NAME;
+//import static org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideConfiguration.MOTOR_NAME_0;
+//import static org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideConfiguration.MOTOR_NAME_1;
+//import static org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideConfiguration.MOTOR_NAME_2;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -27,11 +27,11 @@ public class ManualRotatorAndSlideRecalibration extends OpMode {
 
     @Override
     public void init() {
-        rotator = hardwareMap.get(DcMotorEx.class, MOTOR_NAME);
-        rotator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        slideMotor0 = hardwareMap.get(DcMotorEx.class, MOTOR_NAME_0);
-        slideMotor1 = hardwareMap.get(DcMotorEx.class, MOTOR_NAME_1);
-        slideMotor2 = hardwareMap.get(DcMotorEx.class, MOTOR_NAME_2);
+//        rotator = hardwareMap.get(DcMotorEx.class, MOTOR_NAME);
+//        rotator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        slideMotor0 = hardwareMap.get(DcMotorEx.class, MOTOR_NAME_0);
+//        slideMotor1 = hardwareMap.get(DcMotorEx.class, MOTOR_NAME_1);
+//        slideMotor2 = hardwareMap.get(DcMotorEx.class, MOTOR_NAME_2);
 
     }
 

@@ -3,11 +3,6 @@ package org.firstinspires.ftc.teamcode.auto.commands.factory;
 import org.firstinspires.ftc.teamcode.auto.pedroCommands.FollowPath;
 import org.firstinspires.ftc.teamcode.auto.pedroPathing.pathGeneration.Point;
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.arm.commands.RetractArm;
-import org.firstinspires.ftc.teamcode.subsystems.arm.commands.specimen.PrepareSpecimenHigh;
-import org.firstinspires.ftc.teamcode.subsystems.arm.commands.specimen.ScoreSpecimenHigh;
-import org.firstinspires.ftc.teamcode.subsystems.arm.rotator.ArmRotatorSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.claw.ClawConfiguration;
 import org.firstinspires.ftc.teamcode.subsystems.claw.ClawSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.claw.commands.SetClawAngle;
@@ -54,7 +49,7 @@ public class ObservationCommandFactory extends CommandFactory {
 
     @Override
     public Class<? extends VLRSubsystem<?>>[] getRequiredSubsystems() {
-        return new Class[]{ArmSlideSubsystem.class, ArmRotatorSubsystem.class, ClawSubsystem.class};
+        return new Class[]{/*ArmSlideSubsystem.class, ArmRotatorSubsystem.class,*/ ClawSubsystem.class};
     }
 
 
@@ -64,10 +59,10 @@ public class ObservationCommandFactory extends CommandFactory {
         return new SequentialCommandGroup(
                 // Score preload
                 new ParallelCommandGroup(
-                        new FollowPath(0, new Point(toScoreX, toScoreY)).withTimeout(SCORE_PATH_TIMEOUT),
-                        new PrepareSpecimenHigh()
+                        new FollowPath(0, new Point(toScoreX, toScoreY)).withTimeout(SCORE_PATH_TIMEOUT)
+//                        new PrepareSpecimenHigh()
                 ),
-                new ScoreSpecimenHigh(),
+//                new ScoreSpecimenHigh(),
 
                 new SetClawTwist(ClawConfiguration.HorizontalRotation.NORMAL),
                 new SetClawAngle(ClawConfiguration.VerticalRotation.UP),
@@ -82,7 +77,7 @@ public class ObservationCommandFactory extends CommandFactory {
                                 new FollowPath(0, 180, toPrepareSpecimenIntake1).withTimeout(INTAKE_PATH_TIMEOUT)
                         ),
                         new SequentialCommandGroup(
-                                new RetractArm(),
+//                                new RetractArm(),
                                 new WaitCommand(800)
 //                                new PrepareSpecimenIntake()
                         )

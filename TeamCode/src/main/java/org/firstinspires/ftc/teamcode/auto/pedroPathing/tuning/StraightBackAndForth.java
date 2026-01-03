@@ -16,8 +16,8 @@ import org.firstinspires.ftc.teamcode.auto.pedroPathing.pathGeneration.Point;
 import org.firstinspires.ftc.teamcode.helpers.opmode.VLRLinearOpMode;
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
 import org.firstinspires.ftc.teamcode.helpers.utils.GlobalConfig;
-import org.firstinspires.ftc.teamcode.subsystems.arm.rotator.ArmRotatorSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideSubsystem;
+//import org.firstinspires.ftc.teamcode.subsystems.arm.rotator.ArmRotatorSubsystem;
+//import org.firstinspires.ftc.teamcode.subsystems.arm.slide.ArmSlideSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.claw.ClawSubsystem;
 import org.opencv.core.Mat;
 
@@ -58,7 +58,7 @@ public class StraightBackAndForth extends VLRLinearOpMode {
      */
     @Override
     public void run() {
-        VLRSubsystem.requireSubsystems(ArmSlideSubsystem.class, ArmRotatorSubsystem.class, ClawSubsystem.class);
+        VLRSubsystem.requireSubsystems(/*ArmSlideSubsystem.class, ArmRotatorSubsystem.class, */ClawSubsystem.class);
         VLRSubsystem.initializeAll(hardwareMap);
 
         follower = new Follower(hardwareMap);
