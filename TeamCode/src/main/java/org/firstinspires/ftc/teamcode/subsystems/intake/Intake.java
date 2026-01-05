@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystems.intake;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.arcrobotics.ftclib.command.Subsystem;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 
@@ -11,6 +12,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class Intake extends VLRSubsystem<Intake> implements IntakeConfiguration {
     private final Telemetry telemetry = FtcDashboard.getInstance().getTelemetry();
@@ -26,6 +28,8 @@ public class Intake extends VLRSubsystem<Intake> implements IntakeConfiguration 
 
         intake = new MotorEx(hardwareMap, INTAKE_MOTOR, Motor.GoBILDA.BARE);
         transfer = new MotorEx(hardwareMap, TRANSFER_MOTOR, Motor.GoBILDA.BARE);
+
+        intake.setInverted(true);
 
         intake.setRunMode(Motor.RunMode.RawPower);
 
