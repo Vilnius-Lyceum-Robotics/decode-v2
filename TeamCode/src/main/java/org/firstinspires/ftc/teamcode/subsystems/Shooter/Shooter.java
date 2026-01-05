@@ -18,7 +18,6 @@ public class Shooter extends VLRSubsystem<Shooter> implements ShooterConfigurati
     double shooter_rpm;
     private Servo lift;
     private double liftAngle;
-    //Hood is kinda useless rn
     private double hoodPos;
     private final double HOOD_STEP = 0.005;
 
@@ -41,7 +40,7 @@ public class Shooter extends VLRSubsystem<Shooter> implements ShooterConfigurati
         hood.setPosition(0.1);
         hoodPos = 0.1;
 
-        //setLift(LIFT_DOWN_POS);
+        lift.setPosition(LIFT_DOWN_POS);
     }
 
     private static class Preset{
@@ -52,9 +51,9 @@ public class Shooter extends VLRSubsystem<Shooter> implements ShooterConfigurati
         }
     }
     private final Preset[] presets = new Preset[]{
-            new Preset(1000, 0.10),
-            new Preset(800, 0.16),
-            new Preset(1200, 0.18),
+            new Preset(2000, 0.25),
+            new Preset(1700, 0.21),
+            new Preset(1500, 0.18),
             new Preset(800, 0),
     };
     public void shooterPreset(int index)
@@ -89,11 +88,11 @@ public class Shooter extends VLRSubsystem<Shooter> implements ShooterConfigurati
 
     public void liftUp()
     {
-        lift.setPosition(0.6);
+        lift.setPosition(0.38);
     }
     public void liftDown()
     {
-        lift.setPosition(0.2);
+        lift.setPosition(0.3);
     }
 
 

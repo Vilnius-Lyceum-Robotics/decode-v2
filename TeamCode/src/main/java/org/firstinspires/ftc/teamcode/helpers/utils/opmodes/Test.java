@@ -12,13 +12,12 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Shooter.Shooter;
 import org.firstinspires.ftc.teamcode.subsystems.Shooter.commands.ShootCommand;
 
-@TeleOp(name = "Shooter test", group = "Tests")
+@TeleOp(name = "All test", group = "Tests")
 public class Test extends CommandOpMode {
     private Shooter shooter;
     private Intake intake;
     private Chassis chassis;
     private GamepadEx firstDriver;
-
     private ShootCommand shootCommand;
     private IntakeCommand intakeCommand;
 
